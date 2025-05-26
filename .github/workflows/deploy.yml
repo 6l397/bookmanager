@@ -72,6 +72,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
           task-definition: ./deployments/ecs-task-definition.json
-          service: bookmanager
+          service: bookmanager-service-30k01ami
           cluster: dev-cluster
           wait-for-service-stability: true
