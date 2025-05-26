@@ -27,29 +27,29 @@ jobs:
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
-      - name: 🛠️ Checkout Repository
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: ⚙️ Setup .NET 9 SDK
+      - name: Setup .NET 9 SDK
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.x
 
-      - name: 🔐 Configure AWS Credentials
+      - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: eu-north-1
 
-      - name: 🔑 Login to Amazon ECR
+      - name: Login to Amazon ECR
         run: |
           aws ecr get-login-password --region eu-north-1 | docker login --username AWS --password-stdin ${{ secrets.REPOSITORY }}
 
-      - name: 📦 Publish Docker Image to Amazon ECR
+      - name: Publish Docker Image to Amazon ECR
         run: dotnet publish ./MyCiCdApp.csproj -c Release -p:ContainerRepository=${{ secrets.REPOSITORY }} -p:RuntimeIdentifier=linux-x64
 
-      - name: 🚀 Push Docker Image to ECR
+      - name: Push Docker Image to ECR
         run: |
           docker push ${{ secrets.REPOSITORY }}:latest
           docker push ${{ secrets.REPOSITORY }}:1.0.0
