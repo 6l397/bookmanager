@@ -1,0 +1,24 @@
+﻿name: Deploy 🚀
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name:  Checkout Repository
+        uses: actions/checkout@v4
+      - name:  Setup .NET 9 SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 9.x
+      - name:  Restore Dependencies
+        run: dotnet restore ./BookManager/BookManager.csproj
+      - name:  Build Project
+        run: dotnet build ./BookManager/BookManager.csproj --no-restore
+      - name:  Run Tests
+        run: dotnet test ./BookManager/BookManager.csproj --no-build --verbosity normal
