@@ -1,9 +1,9 @@
 {
-  "taskDefinitionArn": "arn:aws:ecs:eu-north-1:800293098904:task-definition/bookmanager:1",
+  "taskDefinitionArn": "arn:aws:ecs:eu-north-1:800293098904:task-definition/bookmanager:2",
   "containerDefinitions": [
     {
       "name": "container1",
-      "image": "800293098904.dkr.ecr.eu-north-1.amazonaws.com/cwm/bookmanager/800293098904.dkr.ecr.eu-north-1.amazonaws.com/cwm/bookmanager:latest",
+      "image": "800293098904.dkr.ecr.eu-north-1.amazonaws.com/cwm/bookmanager:latest",
       "cpu": 0,
       "portMappings": [
         {
@@ -38,7 +38,7 @@
   "family": "bookmanager",
   "executionRoleArn": "arn:aws:iam::800293098904:role/ecsTaskExecutionRole",
   "networkMode": "awsvpc",
-  "revision": 1,
+  "revision": 2,
   "volumes": [],
   "status": "ACTIVE",
   "requiresAttributes": [
@@ -84,7 +84,7 @@
     "cpuArchitecture": "X86_64",
     "operatingSystemFamily": "LINUX"
   },
-  "registeredAt": "2025-05-26T14:52:41.317Z",
+  "registeredAt": "2025-05-26T16:07:46.824Z",
   "registeredBy": "arn:aws:iam::800293098904:root",
   "enableFaultInjection": false,
   "tags": []
